@@ -10,36 +10,32 @@
 
 // Do not edit the code below.
 function outer() {
-  var name = 'Tyler';
+  var name = "Tyler"
   return function() {
-    return 'The original name was ' + name;
-  };
+    return "The original name was " + name
+  }
 }
 // Do not edit the code above.
-  
+
 /* 
   Above you're given a function that returns another function which has a closure over the name variable.
   Invoke outer saving the return value into another variable called 'inner'.
 */
-  
-// Code Here
 
-
+var inner = outer()
 
 //Once you do that, invoke inner.
 
-//Code Here
-
-
+inner()
 
 ////////// PROBLEM 2 //////////
 
 // Do not edit the code below.
 function callFriend(name) {
   function dial(number) {
-    return 'Calling ' + name + ' at ' + number
+    return "Calling " + name + " at " + number
   }
-  return dial;
+  return dial
 }
 // Do not edit the code above.
 
@@ -51,9 +47,8 @@ function callFriend(name) {
   (HINT: You will need to pass in arguments to both function invocations)
 */
 
-//Code Here
-
-
+var callJake = callFriend("Jake")
+callJake("435-555-9248")
 
 ////////// PROBLEM 3 //////////
 
@@ -61,9 +56,12 @@ function callFriend(name) {
   Write a function called makeCounter that makes the following code work properly.
 */
 
-//Code Here
-
-
+function makeCounter() {
+  var num = 0
+  return function count() {
+    return ++num
+  }
+}
 
 //Uncomment this once you make your function
 //   var count = makeCounter();
@@ -71,8 +69,6 @@ function callFriend(name) {
 //   count(); // 2
 //   count(); // 3
 //   count(); // 4
-
-
 
 ////////// PROBLEM 4 //////////
 
@@ -86,20 +82,22 @@ function callFriend(name) {
 */
 
 function counterFactory(value) {
-  // Code here.
-
+  var value = value
   return {
-
-  };
+    inc: function() {
+      return (value += 1)
+    },
+    dec: function() {
+      return (value -= 1)
+    }
+  }
 }
 
-counter = counterFactory(10);
+counter = counterFactory(10)
 // counter.inc() // 11
 // counter.inc() // 12
 // counter.inc() // 13
 // counter.dec() // 12
-
-
 
 ////////// PROBLEM 5 //////////
 
@@ -109,18 +107,18 @@ counter = counterFactory(10);
   (Hint: don't forget to have a space between the firstname and lastname and a period at the end of the sentence.)
 */
 
-function motivation( firstname, lastname ) {
-  var welcomeText = "You're doing awesome, keep it up";
+function motivation(firstname, lastname) {
+  var welcomeText = "You're doing awesome, keep it up"
 
-  // code message function here.
+  return function message() {
+    return `${welcomeText} ${firstname} ${lastname}.`
+  }
 
   //Uncommment this to return the value of your message function
-  //return message;
+  return message
 }
 
-var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
-
-
+var greeting = motivation("Billy", "Bob") // 'You're doing awesome keep it up Billy Bob.
 
 ////////// PROBLEM 6 //////////
 
@@ -134,20 +132,27 @@ var module = (function() {
     name: "phillip",
     age: 29,
     location: "Utah"
-  };
+  }
 
-  function privateMethod(){
-    return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
+  function privateMethod() {
+    return (
+      "Hi, I'm " +
+      person.name +
+      ", age " +
+      person.age +
+      " from " +
+      person.location
+    )
   }
 
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    // Code here.
-  };
-})();
-
-
+    publicMethod: function() {
+      return privateMethod()
+    }
+  }
+})()
 
 ////////// PROBLEM 7 //////////
 
@@ -159,17 +164,20 @@ var module = (function() {
 */
 
 function secretNumber() {
-  var secret = 143;
+  var secret = 143
 
   return {
-    // Code here
-  };
+    addToSecret: function(num) {
+      return (secret += num)
+    },
+    takeAwayFromSecret: function(num) {
+      return (secret -= num)
+    }
+  }
 }
 
-
-
 ////////// PROBLEM 8 //////////
-  
+
 /*
   Here we have a for loop that will iterate as long as i is less than or equal to 5.
   What we need to do is console.log(i) so that it logs like so:
@@ -188,9 +196,10 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
+    let j = i
     setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
+      console.log(j)
+    }, j * 1000)
   }
 }
-timeOutCounter();
+timeOutCounter()
